@@ -2,15 +2,15 @@
 
 http://www.timothydeblock.com/blog/2014/6/9/disable-multiple-active-directory-accounts-using-powershell
 
-Disable multiple Active Directory accounts using PowerShell
+#Disable multiple Active Directory accounts using PowerShell
 
 Two weeks ago I created my first PowerShell script. It’s nothing special, just a script to disable multiple Active Directory accounts from a .csv file. Still, I’m quite proud of it considering I’ve never created a PowerShell script before and that I was able to do it on my own (Google searches notwithstanding).
 
-Preparation
+##Preparation
 
 First, I grabbed PowerGUI Script Editor to create my PowerShell script (http://en.community.dell.com/techcenter/powergui/m/bits/20439049.aspx). Next I put all the accounts that need to be disabled in single column on a new spreadsheet. At the top of the column I put ‘samaccount.’ This is needed for part of the script to work. I then saved the spreadsheet as a .csv file.
 
-Building the script
+##Building the script
 
 I opened PowerGUI Script Editor and started a new script. A Google search found me these lines of code::
 
@@ -26,7 +26,7 @@ Before you execute the script you can use the ‘-whatif’ command after ‘$na
 
 Now, if you try to run this script as is (like I did), error messages will pop up indicating bad commands and syntax. In my case I was missing Import-Module activedirectory, which opens up all the commands to run a PowerShell script in Active Directory.
 
-The final script should look like this:
+##The final script should look like this:
 
 Import-Module activedirectory
 
@@ -34,7 +34,7 @@ $namelist=Import-Csv C:\PortalDisableFinal.csv
 
 foreach($name in $namelist){Disable-ADAccount -Identity $name.samaccount }
 
-Running the script
+##Running the script
 
 Once you have the .csv file and the PowerShell script put together, both need to be transferred to the server that Active Directory is on. Make sure Active Directory Module for Windows PowerShell is installed on the server (http://technet.microsoft.com/en-us/library/hh847837.aspx; http://blogs.msdn.com/b/rkramesh/archive/2012/01/17/how-to-add-active-directory-module-in-powershell-in-windows-7.aspx). That will be needed to run the script.
 
