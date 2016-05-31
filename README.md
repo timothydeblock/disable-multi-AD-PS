@@ -1,4 +1,4 @@
-# disable-multi-AD-PS
+# Disable-multi-AD-PS
 
 http://www.timothydeblock.com/blog/2014/6/9/disable-multiple-active-directory-accounts-using-powershell
 
